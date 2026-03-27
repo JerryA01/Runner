@@ -9,6 +9,8 @@ RUN npm install
 
 COPY . .
 
+COPY runner/*.jar /app/runner/
+
 EXPOSE 3000
 
 CMD ["node", "app.js"]
