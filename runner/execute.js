@@ -3,7 +3,6 @@ import fs from "fs";
 
 export function runJUnit(testCode) {
   return new Promise((resolve) => {
-    // Write test file to /tmp
     fs.writeFileSync("/tmp/SolutionTest.java", testCode);
 
     const cmd = `
@@ -12,10 +11,12 @@ export function runJUnit(testCode) {
     `;
 
     exec(cmd, (err, stdout, stderr) => {
-      if (err || stderr) {
+      if (err) {
         return resolve(stderr || err.message);
       }
-      resolve(stdout);
+
+      // JUnit prints to stderr even when passing
+      resolve(stdout + stderr);
     });
   });
 }
