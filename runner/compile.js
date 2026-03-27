@@ -3,9 +3,9 @@ import fs from "fs";
 
 export function compileJava(code) {
   return new Promise((resolve) => {
-    fs.writeFileSync("./runner/temp/Main.java", code);
+    fs.writeFileSync("/tmp/Main.java", code);
 
-    exec("javac ./runner/temp/Main.java", (err, stdout, stderr) => {
+    exec("javac /tmp/Main.java", (err, stdout, stderr) => {
       if (err || stderr) {
         return resolve({ error: stderr || err.message });
       }

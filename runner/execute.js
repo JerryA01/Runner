@@ -3,9 +3,12 @@ import fs from "fs";
 
 export function runJUnit(testCode) {
   return new Promise((resolve) => {
-    fs.writeFileSync("./runner/temp/MainTest.java", testCode);
+    fs.writeFileSync("/tmp/MainTest.java", testCode);
 
-    const cmd = `javac -cp .:./runner/junit.jar ./runner/temp/MainTest.java && java -cp .:./runner/junit.jar org.junit.runner.JUnitCore MainTest`;
+    const cmd = `
+      javac -cp ./runner/junit.jar:/tmp /tmp/MainTest.java &&
+      java -cp ./runner/junit.jar:/tmp org.junit.runner.JUnitCore MainTest
+    `;
 
     exec(cmd, (err, stdout, stderr) => {
       if (err || stderr) {
