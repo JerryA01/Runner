@@ -9,7 +9,7 @@ RUN npm install
 
 COPY . .
 
-COPY runner/*.jar /app/runner/
+COPY runner/*.jar /opt/render/project/src/runner/
 
 EXPOSE 3000
 
