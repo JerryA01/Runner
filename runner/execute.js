@@ -5,8 +5,8 @@ export function runJUnit(testCode) {
   return new Promise((resolve) => {
     fs.writeFileSync("/tmp/SolutionTest.java", testCode);
 
-    const junit = "/opt/render/project/src/runner/junit.jar";
-    const hamcrest = "/opt/render/project/src/runner/hamcrest.jar";
+    const junit = "/opt/render/project/src/runner/junit-4.13.2.jar";
+    const hamcrest = "/opt/render/project/src/runner/hamcrest-core-1.3.jar";
 
     const cmd = `
       javac -cp ${junit}:${hamcrest}:/tmp /tmp/SolutionTest.java &&
