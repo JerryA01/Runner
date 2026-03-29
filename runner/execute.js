@@ -13,9 +13,9 @@ export function runJUnit(testCode) {
     const hamcrest = "/opt/render/project/src/runner/hamcrest-core-1.3.jar";
 
     const cmd = `
-      javac -cp ${junit}:${hamcrest}:/tmp /tmp/SolutionTest.java &&
-      java -cp ${junit}:${hamcrest}:/tmp org.junit.runner.JUnitCore SolutionTest
-    `;
+    javac -cp ${junit}:${hamcrest}:/tmp -d /tmp /tmp/Solution.java /tmp/SolutionTest.java &&
+    java -cp ${junit}:${hamcrest}:/tmp org.junit.runner.JUnitCore SolutionTest`;
+
 
     console.log("Running JUnit with command:", cmd);
 
@@ -24,6 +24,7 @@ export function runJUnit(testCode) {
           console.error("JUnit error:", err);
           console.error("stderr:", stderr);
           console.error("stdout:", stdout);
+
         return resolve(stderr || err.message);
       }
       resolve(stdout + stderr);
