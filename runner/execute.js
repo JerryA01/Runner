@@ -4,10 +4,9 @@ import fs from "fs";
 export function runJUnit(testCode) {
   return new Promise((resolve) => {
 
-    // ⭐ Remove BOM if present
+    // Removed BOM if present
     testCode = testCode.replace(/^\uFEFF/, "").trimStart();
 
-    // ⭐ Write test file with clean UTF-8
     fs.writeFileSync("/tmp/SolutionTest.java", testCode, { encoding: "utf8" });
 
     const junit = "/opt/render/project/src/runner/junit-4.13.2.jar";
@@ -18,8 +17,13 @@ export function runJUnit(testCode) {
       java -cp ${junit}:${hamcrest}:/tmp org.junit.runner.JUnitCore SolutionTest
     `;
 
+    console.log("Running JUnit with command:", cmd);
+
     exec(cmd, (err, stdout, stderr) => {
       if (err) {
+          console.error("JUnit error:", err);
+          console.error("stderr:", stderr);
+          console.error("stdout:", stdout);
         return resolve(stderr || err.message);
       }
       resolve(stdout + stderr);
