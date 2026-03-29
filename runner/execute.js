@@ -25,7 +25,7 @@ export function runJUnit(testCode) {
           console.error("stderr:", stderr);
           console.error("stdout:", stdout);
 
-        return resolve(stderr || err.message);
+        return resolve((stdout || "") + (stderr || "") || err.message);
       }
       resolve(stdout + stderr);
     });
