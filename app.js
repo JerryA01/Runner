@@ -5,6 +5,11 @@ import { runJUnit } from "./runner/execute.js";
 const app = express();
 app.use(express.json({ limit: "5mb" }));
 
+// Health check endpoint for UptimeRobot
+app.get("/health", (req, res) => {
+  res.status(200).json({ status: "ok" });
+});
+
 app.post("/run", async (req, res) => {
   try {
     const { code, tests } = req.body;
