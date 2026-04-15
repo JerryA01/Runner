@@ -56,7 +56,43 @@ This makes it ideal for adaptive learning systems that need to:
 Submit Java code for compilation + execution.
 
 #### Request Body
-```json
+```json 
 {
   "code": "public class Main { public static void main(String[] args) { System.out.println(\"Hello\"); }}"
 }
+```
+---
+
+## 🔐 Security Notes
+
+- Code is executed in an isolated environment
+- Execution timeouts prevent infinite loops
+- No persistent state between executions
+- Designed for educational use only
+
+---
+
+## 🔗 Used In
+
+This runner powers the backend of the:
+
+👉 Adaptive Java Learning Platform  
+https://adaptive-learning-platform-23f1.vercel.app/
+
+---
+
+## ⚠️ Limitations
+
+- Not designed for untrusted production-grade execution at scale
+- No container-level sandboxing (future improvement)
+- No resource quotas (CPU/memory limits)
+
+---
+
+## 🚀 Future Improvements
+
+- Docker-based sandboxing
+- Per-execution resource limits
+- Queue-based execution system
+- Multi-language support (Python, JS)
+
